@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: web-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
-    app.kubernetes.io/name: web
+    app : web
   ports:
     - port: 80
       targetPort: 5000 
-      nodePort: 30007
+      # nodePort: 30007
