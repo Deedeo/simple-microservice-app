@@ -46,7 +46,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "circleci-project-setup" ]
+    branches: [ "main" ]
   pull_request:
 
 permissions:
