@@ -3,7 +3,6 @@ name: 'Terraform'
 on:
   push:
     branches: 
-       - main
        - circleci-project-setup
   pull_request:
 
