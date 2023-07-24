@@ -22,6 +22,8 @@ provider "aws" {
   region = local.aws_region
 }
 
+data "aws_availability_zones" "azs" {}
+
 module "webapp-vpc" {
   source          = "terraform-aws-modules/vpc/aws"
   version         = "5.0.0"
