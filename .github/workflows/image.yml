@@ -26,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./src/Dockerfile
+          file: ./src
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webapp:2.0
