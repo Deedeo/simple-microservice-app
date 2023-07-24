@@ -33,4 +33,3 @@ variable "single_nat_gateway" {
     description = "Single Nat Gateway in VPC"
     default = true
     }
-variable ""
