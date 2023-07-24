@@ -18,9 +18,9 @@ terraform {
   }
 }
 
-# provider "aws" {
-#   region = local.aws_region
-# }
+provider "aws" {
+  region = var.aws_region
+}
 
 data "aws_availability_zones" "azs" {}
 

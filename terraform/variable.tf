@@ -16,6 +16,15 @@ variable "private_subnets_cidr_blocks" {
   default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
 
+# variables.tf
+
+variable "aws_region" {
+  type    = string
+  default = "us-east-1"
+}
+
+
+
 variable "enable_dns_hostnames" {
   type        = bool
   description = "Enable DNS hostnames in VPC"
