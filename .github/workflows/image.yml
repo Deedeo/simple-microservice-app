@@ -8,6 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./src
+
     steps:
       -
         name: Checkout
@@ -26,6 +32,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./src
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/webapp:2.0
