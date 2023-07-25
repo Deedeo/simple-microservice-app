@@ -3,7 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - "circleci-project-setup"
+      - "main"
 
 jobs:
   build:
