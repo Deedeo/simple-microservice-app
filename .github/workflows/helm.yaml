@@ -1,27 +1,43 @@
-name: Helm-dev
+name: 'Helm'
 
 on:
   push:
-    branches:
-      - circleci-project-setup
+    branches: [ "circleci-project-setup" ]
+  pull_request:
 
+permissions:
+  contents: read
 
 jobs:
-  deploy:
-    runs-on: self-hosted
+  webapp-helm-deploy:
+    name: 
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./webapp
+
+
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Checkout Github Repo
-      uses: actions/checkout@v2
-
-    - name: Deploy Helm
-      uses: bitovi/github-actions-deploy-eks-helm@v1.0.0
+  #   This step is to install the kubectl cli
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3.0
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}}
-        aws-region: us-east-1
-        cluster-name: helm
-        # cluster-role-arn: $
-        config-files: webapp/values.yaml
-        chart-path: webapp/chart
-        name: webapp
+        version: 'v1.25.0' # default is latest stable
+        install-metrics-apiserver: true      
+
+  #   This step is to configure the AWS credentials with the secrets
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+  #   This step is to update the kubeconfig file with the cluster details
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name helm --region ${{ secrets.AWS_REGION }}
