@@ -9,15 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./src
-
     steps:
       -
         name: Checkout
         uses: actions/checkout@v3
+
+      -
+        name: Move to src directory
+        run: cd src
       -
         name: Login to Docker Hub
         uses: docker/login-action@v2
