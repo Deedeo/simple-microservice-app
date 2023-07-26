@@ -48,10 +48,12 @@ jobs:
          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
          chmod 700 get_helm.sh
          ./get_helm.sh
-         
+  
+
+
   # This step install the webapp using helm chart 
     - name: Helm chart 
-      run: helm install web webapp/
+      run: helm install web ./webapp
     
   # This step is to install the nginx controller using helm chart
     - name: Using helm chart to install nginx controller
