@@ -41,3 +41,18 @@ jobs:
   #   This step is to update the kubeconfig file with the cluster details
     - name: Update kube config
       run: aws eks update-kubeconfig --name helm --region ${{ secrets.AWS_REGION }}
+
+  #   This step is to install the helm cli 
+    - name: Install Helm
+      uses: azure/setup-helm@v1.0.0
+
+  # This step install the webapp using helm chart 
+    - name: Helm chart 
+      run: helm install web webapp/
+    
+  # This step is to install the nginx controller using helm chart
+    - name: Using helm chart to install nginx controller
+      run: |
+       helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+       helm repo update
+       helm install ingress ingress-nginx/ingress-nginx -f nginx-controller-values.yaml
