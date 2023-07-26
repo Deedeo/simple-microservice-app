@@ -13,11 +13,6 @@ jobs:
     name: 
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./webapp
-
 
     steps:
     - name: Checkout code
