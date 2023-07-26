@@ -44,7 +44,7 @@ jobs:
          chmod 700 get_helm.sh
          ./get_helm.sh
   
-  # This step install the webapp using helm chart 
+  # This step install the webapp using helm chart using the values.yaml file 
     - name: Helm chart 
       run: helm install web-app ./webapp
 
@@ -53,7 +53,7 @@ jobs:
       run: kubectl apply -f ./k8s-manifest/manifests-monitoring
     
   # This step is to deploy the logging manifests to the EKS cluster
-  
+
     - name: Deploy logging manifests to the EKS cluster
       run: kubectl apply -f ./k8s-manifest/manifests-logging
 
