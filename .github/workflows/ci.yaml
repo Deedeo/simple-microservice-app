@@ -48,7 +48,7 @@ jobs:
     - name: Helm chart 
       run: helm install web-app ./webapp
 
-  # This step is to deploy the monitoring manifests to the EKS cluster
+  # This step is to deploy the monitoring manifests to the EKS cluster which is created by the terraform
     - name: Deploy to EKS
       run: kubectl apply -f ./k8s-manifest/manifests-monitoring
     
